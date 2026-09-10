@@ -1,6 +1,5 @@
 import asyncio
 import json
-import os
 import sys
 import time
 
@@ -72,14 +71,26 @@ def test_real_subprocess_timeout_kills_and_releases_slot(service, monkeypatch, t
         setup.source_path(),
         f"import os, time\nfrom pathlib import Path\nPath({str(marker)!r}).write_text(str(os.getpid()))\ntime.sleep(60)\n",
     )
+    processes = []
+    create_subprocess_exec = asyncio.create_subprocess_exec
+
+    async def track_process(*args, **kwargs):
+        process = await create_subprocess_exec(*args, **kwargs)
+        processes.append(process)
+        return process
+
+    monkeypatch.setattr(asyncio, "create_subprocess_exec", track_process)
     monkeypatch.setattr(setup, "MODEL_TIMEOUT", 0.3)
     start = time.monotonic()
     result = asyncio.run(service.test_model("test-model", "test"))
     assert result["ok"] is False and "timed out" in result["message"]
     assert time.monotonic() - start < 3
-    pid = int(marker.read_text())
-    with pytest.raises(ProcessLookupError):
-        os.kill(pid, 0)
+    assert len(processes) == 1
+    assert processes[0].pid == int(marker.read_text())
+    # The real child transport records exit on both POSIX and Windows. Unlike
+    # os.kill(pid, 0), this neither signals a Windows process nor races PID reuse.
+    assert processes[0].returncode is not None
+    assert processes[0].returncode != 0
     assert not service.model_lock.locked()
 
 

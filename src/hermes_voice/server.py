@@ -21,6 +21,23 @@ from .speech import PREVIEW_TEXT, Speech, SpeechError, audio_mime
 from .storage import Store, ident
 
 
+class BrowserStaticFiles(StaticFiles):
+    """Keep browser assets independent of OS/Windows registry MIME mappings."""
+
+    def file_response(self, full_path, stat_result, scope, status_code=200):
+        response = super().file_response(full_path, stat_result, scope, status_code)
+        media_type = {
+            ".js": "text/javascript",
+            ".mjs": "text/javascript",
+            ".css": "text/css",
+            ".html": "text/html",
+        }.get(Path(full_path).suffix.lower())
+        if media_type is not None and response.status_code != 304:
+            response.media_type = media_type
+            response.headers["content-type"] = f"{media_type}; charset=utf-8"
+        return response
+
+
 class Model(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -514,8 +531,8 @@ def create_app(data_dir=None, adapter=None):
 
     static = Path(__file__).parent / "static"
     if static.is_dir():
-        app.mount("/static", StaticFiles(directory=static), name="assets")
-        app.mount("/", StaticFiles(directory=static, html=True), name="static")
+        app.mount("/static", BrowserStaticFiles(directory=static), name="assets")
+        app.mount("/", BrowserStaticFiles(directory=static, html=True), name="static")
     return app
 
 
