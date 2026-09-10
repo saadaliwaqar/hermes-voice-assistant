@@ -1,6 +1,6 @@
 # Alpha candidate verification
 
-Status: source pushed to a private repository; public visibility is not authorized. These checks are not production certification.
+Status: source is publicly available with owner approval; private vulnerability reporting is enabled and verified. These checks are not production certification.
 
 ## Latest regression and CI evidence
 
@@ -49,4 +49,4 @@ python -m build
 
 Browser checks require an isolated running service; see [Contributing](../CONTRIBUTING.md). Live tests require explicit configured authentication and speech prerequisites. A dashboard-only clean Python 3.12 wheel had separately passed missing-Hermes onboarding/save/restart checks.
 
-Remaining launch actions: explicit public-switch approval, then enable/read back GitHub private reporting before announcing availability. GitHub documents private reporting as a public-repository feature. No public release assets, bundled installers or PyPI release are implied. Streaming remains default-off with no demonstrated early-audio advantage.
+Public switch completed with explicit owner approval. GitHub returned public visibility and private reporting enabled. Anonymous repository, README and Studio-image requests returned HTTP 200, and the public advisories page exposed the reporting control. No public release assets, bundled installers or PyPI release are implied. Streaming remains default-off with no demonstrated early-audio advantage.

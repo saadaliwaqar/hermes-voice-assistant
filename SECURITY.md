@@ -10,11 +10,11 @@ The server prohibits embedding with CSP `frame-ancestors 'none'` and `X-Frame-Op
 
 ## Reporting a vulnerability
 
-Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). It remains private during release preparation. GitHub private vulnerability reporting is a public-repository feature, so its availability is not yet verified.
+Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). The repository is public and GitHub private vulnerability reporting is enabled and verified.
 
-The owner selected GitHub private vulnerability reporting for launch. During the separately approved public switch, the maintainer must enable it and read back the setting before announcing the alpha. No security email address is advertised. See [GitHub’s configuration guide](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configuring-private-vulnerability-reporting-for-a-repository).
+Use [Report a vulnerability](https://github.com/saadaliwaqar/hermes-voice-assistant/security/advisories/new) to submit a private report (GitHub sign-in required). The enablement setting was read back and the reporting control was verified on the public advisories page. No separate security email address is advertised. See [GitHub’s configuration guide](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configuring-private-vulnerability-reporting-for-a-repository).
 
-If the project is published on GitHub **and private vulnerability reporting is enabled**, use that repository's **Security → Report a vulnerability** control. Do not assume it is available until the actual repository and setting are confirmed. Otherwise, request a private contact through an existing maintainer communication channel without disclosing exploit details. If no channel exists, withhold sensitive details until one is announced; do not put them in a public issue.
+Do not disclose exploit details in public issues. If the private reporting control is unavailable, request a private contact through an existing maintainer channel without posting sensitive details.
 
 A private report should include:
 
@@ -23,7 +23,7 @@ A private report should include:
 - Minimal reproduction steps using synthetic data and, if safe, a proposed mitigation.
 - Whether the issue is already public or appears to be actively exploited.
 
-Do not send API keys, personal transcripts, local databases or private recordings. Avoid testing against anyone else's instance or data. Coordinate disclosure privately once a channel exists; no acknowledgement or fix deadline is promised by this alpha policy.
+Do not send API keys, personal transcripts, local databases or private recordings. Avoid testing against anyone else's instance or data. Coordinate disclosure privately; no acknowledgement or fix deadline is promised by this alpha policy.
 
 ## Credentials and data
 
@@ -31,4 +31,4 @@ Keep provider keys in server-side configuration, never browser code, screenshots
 
 Configured cloud models can receive conversation text; selected cloud TTS providers receive reply or preview text and may charge for requests. Local-first does not mean fully offline. See [privacy and data flow](docs/privacy.md) and [voice provider configuration](docs/voice-providers.md). No telemetry should be added without explicit opt-in and documentation.
 
-Security review, a working private reporting channel and clean-install verification remain [release gates](docs/release-checklist.md).
+See the [release checklist](docs/release-checklist.md) for verified scope and the limitations of this alpha.

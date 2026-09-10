@@ -1,13 +1,13 @@
 # Public release checklist
 
-Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant), branch `main`. Repository creation and source push were authorized and verified. Visibility remains **private**; public publication requires separate approval.
+Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant), branch `main`. Repository creation and source push were authorized and verified. Public visibility was explicitly approved and verified; private vulnerability reporting is enabled.
 
 ## Verified preparation
 
 - [x] Original dashboard code licensed MIT by owner choice; LICENSE and package metadata added.
 - [x] Direct-dependency license inventory and optional Piper/Edge/model caveats documented; no bundled runtime/model weights.
 - [x] Screenshot-led README, alpha notes, contribution/security guidance and real clone URL prepared.
-- [x] Actual About description/topics and private visibility read back from GitHub.
+- [x] Actual About description/topics and public visibility read back from GitHub.
 - [x] Studio Core/Daylight screenshots refreshed from isolated empty data and documentation images reviewed for visible private information.
 - [x] Initial local checks: 100 Python, 55 browser and 18 Node speech/geometry checks passed.
 - [x] Clean macOS Python 3.12 wheel onboarding/save/restart checked with Hermes absent; not a full independent Hermes setup.
@@ -26,12 +26,12 @@ See [verification scope](release-verification.md), [third-party notices](../THIR
 - [x] Normal existing-login setup passed using an authorized temporary credential store outside the repository: model probe, no probe settings/session changes, save/read-back, completion and restart persistence. Temporary credentials were removed and the original auth hash was unchanged. New-account OAuth is outside the verified scope.
 - [x] Update verification records to match executed checks and supported scope, including existing-login setup success and the untested new-account OAuth boundary.
 
-## Approved launch approach, not yet executed
+## Verified public launch
 
 - [x] Owner selected GitHub private vulnerability reporting rather than an unverified contact email.
-- [ ] Obtain explicit public-visibility approval.
-- [ ] Change visibility, then enable and read back GitHub private reporting before announcing the alpha. This feature requires a public repository; it is not verified while private.
-- [ ] Verify public README/screenshots/source and reporting control. If a release with binary assets is separately requested, audit and read back those exact assets as well.
+- [x] Obtain explicit public-visibility approval.
+- [x] Public visibility and private vulnerability reporting enabled; both settings read back from GitHub.
+- [x] Anonymous requests verified public repository, README, Studio screenshot and reporting control. If a release with binary assets is separately requested, audit and read back those exact assets as well.
 
 ## Not claimed by this alpha
 

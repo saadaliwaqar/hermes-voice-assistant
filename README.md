@@ -2,7 +2,7 @@
 
 **A local-first AI voice assistant and web dashboard for Hermes Agent, with multiple conversations, speech-to-text, text-to-speech and background AI tasks.**
 
-Alpha candidate `0.1.0a1`, maintained at [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). The repository is private pending final publication approval; this is not a production release. Community project, not an official Nous Research product. Original dashboard code is MIT-licensed; dependency and voice-model licenses are separate.
+Alpha candidate `0.1.0a1`, maintained at [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). The repository is public as an early alpha for existing Hermes users; this is not a production release. Community project, not an official Nous Research product. Original dashboard code is MIT-licensed; dependency and voice-model licenses are separate.
 
 [Installation](docs/installation.md) · [Alpha release notes](docs/releases/0.1.0a1.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
@@ -41,7 +41,7 @@ Studio is the default. **Classic layout** restores the previous workspace immedi
 
 ## Quick start
 
-Requires Python 3.11 or newer. Clone the repository (access is required while it remains private):
+Requires Python 3.11 or newer. Clone the public repository:
 
 ```sh
 git clone https://github.com/saadaliwaqar/hermes-voice-assistant.git
@@ -124,6 +124,6 @@ Next: broader installation compatibility, stronger session/task recovery, artifa
 
 **Does it work on Windows or Linux?** Python tests and package builds pass on GitHub’s Windows and Ubuntu runners with Python 3.11/3.12. Full live Hermes/microphone/speaker checks are still macOS-only. Passing package CI is not a guarantee of end-to-end voice support on every platform.
 
-**Is this official Hermes software?** No. It is an independent community project by Devsdroid.com, not an official Nous Research product. Original dashboard code uses the [MIT License](LICENSE); dependencies and voice models retain their separate licenses. Publication is not yet authorized.
+**Is this official Hermes software?** No. It is an independent community project by Devsdroid.com, not an official Nous Research product. Original dashboard code uses the [MIT License](LICENSE); dependencies and voice models retain their separate licenses. Source is publicly available.
 
 **Is this production-ready?** Not yet. This alpha has real execution evidence, but platform, load, security, dependency-attribution and publication gates remain.

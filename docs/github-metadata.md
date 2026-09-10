@@ -1,6 +1,6 @@
 # GitHub repository metadata
 
-Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). Source has been pushed to `main`. Visibility remains **private** pending explicit public-launch approval. No GitHub release or PyPI publication is implied.
+Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). Source has been pushed to `main`. Visibility is **public** with owner approval. No GitHub release or PyPI publication is implied.
 
 ## Display name
 
@@ -26,15 +26,15 @@ python
 fastapi
 ```
 
-Description, topics and private visibility were read back from GitHub after configuration. Topics describe implemented behavior, not search-ranking guarantees. Original dashboard code is [MIT-licensed](../LICENSE); dependency and voice-model licenses remain separate. Do not add realtime, fully-offline or platform-support claims without evidence.
+Description, topics and public visibility were read back from GitHub after configuration. Topics describe implemented behavior, not search-ranking guarantees. Original dashboard code is [MIT-licensed](../LICENSE); dependency and voice-model licenses remain separate. Do not add realtime, fully-offline or platform-support claims without evidence.
 
 ## Website, links and badges
 
 - Website remains unset: no separate project landing page has been approved.
-- Installation instructions use the real repository URL. Private access remains necessary until launch.
+- Installation instructions use the real repository URL. Cloning is publicly accessible.
 - CI evidence belongs in the [verification record](release-verification.md). Passing package tests are not proof of complete end-user model/audio compatibility on every platform.
 - No PyPI release or successful CI badge is implied by repository creation.
 
-## Public-switch procedure
+## Verified public switch
 
-The owner selected GitHub private vulnerability reporting for launch. GitHub documents this as a public-repository feature. After explicit authorization to change visibility, enable reporting, read back the setting and verify the reporting control before announcing availability. If enablement fails, stop the announcement and resolve the reporting channel. See [security policy](../SECURITY.md) and [release checklist](release-checklist.md).
+The owner authorized public visibility. GitHub visibility was read back as public and private vulnerability reporting as enabled. Anonymous requests successfully loaded the repository, README and Studio screenshot; the public advisories page includes Report a vulnerability. See [security policy](../SECURITY.md) and [release checklist](release-checklist.md).

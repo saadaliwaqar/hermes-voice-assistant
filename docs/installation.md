@@ -7,7 +7,7 @@ git clone https://github.com/saadaliwaqar/hermes-voice-assistant.git
 cd hermes-voice-assistant
 ```
 
-Repository access is required while it remains private. The commands below assume this directory and an explicitly chosen Hermes-enabled Python environment.
+The repository is public; cloning requires no GitHub login. The commands below assume this directory and an explicitly chosen Hermes-enabled Python environment.
 
 ## Prerequisite: a functioning Hermes runtime
 Use a Python environment in which `from run_agent import AIAgent` works, following the official [Hermes Python library guide](https://hermes-agent.nousresearch.com/docs/guides/python-library). Hermes does not currently provide a supported PyPI wheel for this purpose.
