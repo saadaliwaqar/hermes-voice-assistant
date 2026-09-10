@@ -23,8 +23,8 @@ See [verification scope](release-verification.md), [third-party notices](../THIR
 - [x] Gitleaks 8.30.1 all-ref history and extracted allowlisted candidate scans returned zero findings. Final commits are rescanned before push; binary/privacy and unknown-secret limits remain.
 - [x] Review transitive dependency/model terms for dashboard-only source/wheel; expanded third-party notices document copyleft/native-codec limits. No bundled-runtime approval or legal certification is claimed.
 - [x] Independently install runtime dependencies and dashboard wheel; verify real chat and browser voice loop with existing authentication/cache reuse explicitly recorded.
-- [ ] Complete normal first-user authentication/setup verification. QA-only in-memory auth did not reach the wizard subprocess, so that connection test remains unverified.
-- [x] Update verification records to match executed checks and supported scope, including the incomplete first-user setup gate.
+- [x] Normal existing-login setup passed using an authorized temporary credential store outside the repository: model probe, no probe settings/session changes, save/read-back, completion and restart persistence. Temporary credentials were removed and the original auth hash was unchanged. New-account OAuth is outside the verified scope.
+- [x] Update verification records to match executed checks and supported scope, including existing-login setup success and the untested new-account OAuth boundary.
 
 ## Approved launch approach, not yet executed
 

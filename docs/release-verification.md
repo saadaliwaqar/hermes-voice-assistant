@@ -9,7 +9,7 @@ Status: source pushed to a private repository; public visibility is not authoriz
 - Node: **15 speech + 3 geometry tests passed**. Python lint/format and frontend syntax checks passed.
 - [GitHub run 34440221742](https://github.com/saadaliwaqar/hermes-voice-assistant/actions/runs/34440221742), commit `65f5985`: successful Python tests/source-candidate/build jobs on macOS, Ubuntu and Windows with Python 3.11/3.12; frontend syntax/Node job passed. This closes the initial Windows MIME and process-test failures. It does not establish physical microphone or live provider support on all platforms.
 
-## Independently installed Hermes runtime: qualified pass
+## Independently installed Hermes runtime and existing-login setup: pass
 
 A fresh Python 3.11.15 environment on macOS arm64 installed Hermes revision `21b2095d00a98b8ad7b5c60b10587619c852cdb8` and a dashboard wheel built from committed dashboard revision `d8ad90b`. Dependencies were installed independently, without a private development `.pth` bridge or inherited site packages. `uv pip check` reported 93 compatible packages. Committed sources were extracted with `git archive`, not downloaded in a fresh network clone.
 
@@ -20,7 +20,11 @@ Actual results:
 - Prerecorded browser microphone → Whisper → real model → Edge synthesis → actual browser playback passed. Synthesis returned HTTP 200; session switch released microphone tracks; no browser JavaScript errors occurred.
 - A cached Whisper base model, existing Chrome and a prerecorded voice fixture were reused. Model downloading was disabled. No paid TTS provider was used.
 
-**The full first-user setup gate remains partial.** Existing subscription credentials were read through a QA-only in-memory bridge, not copied into the repository. The setup wizard's model test runs a separate interpreter and could not inherit that bridge; its unbridged credential probe returned `codex_auth_missing`. The wizard test failed and is not counted as passed. This identifies a harness authentication boundary, not proof that normal configured-user setup is broken. New-user OAuth, token refresh, ordinary credential-store onboarding and clean model download remain unverified. The QA-only bridge is not a production installation instruction.
+The initial QA-only in-memory credential bridge did not reach the wizard subprocess (`codex_auth_missing`). That was not counted as a successful setup test.
+
+**Follow-up normal existing-login setup passed.** With explicit owner permission, only the configured provider login was copied to a mode-0600 file in a mode-0700 temporary directory outside the repository. The independently installed runtime used its normal credential-store path, without authentication monkeypatches. The installed dashboard wheel included the Windows fix. The model probe returned `ok: true`; settings and sessions were unchanged by the probe. Settings save/read-back, setup completion and restart persistence passed. The QA server stopped, temporary credential directory was removed, and the original auth-file hash was unchanged. An initial cleanup assertion mistook socket TIME_WAIT for an active listener; the corrected harness rerun passed.
+
+New-account OAuth, token refresh and a clean model download remain outside this existing-Hermes-user alpha verification. No temporary credentials or QA harness are published.
 
 This live test covered the initial committed voice implementation; the subsequent MIME-only production change was separately covered by current regression/CI checks. Prerecorded capture misheard “Hello” as “Allow”, so pipeline success is not perfect transcription or real-room quality certification.
 
@@ -45,4 +49,4 @@ python -m build
 
 Browser checks require an isolated running service; see [Contributing](../CONTRIBUTING.md). Live tests require explicit configured authentication and speech prerequisites. A dashboard-only clean Python 3.12 wheel had separately passed missing-Hermes onboarding/save/restart checks.
 
-Remaining gates: normal first-user authentication/setup verification, explicit public-switch approval, then enable/read back GitHub private reporting before announcing availability. GitHub documents private reporting as a public-repository feature. No public release assets, bundled installers or PyPI release are implied. Streaming remains default-off with no demonstrated early-audio advantage.
+Remaining launch actions: explicit public-switch approval, then enable/read back GitHub private reporting before announcing availability. GitHub documents private reporting as a public-repository feature. No public release assets, bundled installers or PyPI release are implied. Streaming remains default-off with no demonstrated early-audio advantage.
