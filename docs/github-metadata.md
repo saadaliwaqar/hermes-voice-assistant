@@ -1,12 +1,6 @@
-# Draft GitHub metadata
+# GitHub repository metadata
 
-Preparation only. Do not create a repository, configure a remote, publish a release or change account settings from this document. The owner/organization and publication authorization are not yet confirmed.
-
-## Recommended repository slug
-
-`hermes-voice-assistant`
-
-This is a recommendation, not an existing remote or a claim that the name is available under a particular account.
+Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). Source has been pushed to `main`. Visibility remains **private** pending explicit public-launch approval. No GitHub release or PyPI publication is implied.
 
 ## Display name
 
@@ -16,7 +10,7 @@ Hermes Voice Assistant by Devsdroid.com
 
 > Local-first voice dashboard for Hermes Agent: multi-session chat, background AI tasks, Whisper speech-to-text and optional TTS. Community alpha by Devsdroid.com; not an official Nous Research product.
 
-## Suggested topics
+## Applied topics
 
 ```text
 hermes-agent
@@ -32,15 +26,15 @@ python
 fastapi
 ```
 
-These describe implemented behavior and technology, not search-ranking guarantees. Original dashboard code is [MIT-licensed](../LICENSE); dependency and voice-model licenses remain separate. Do not add `realtime`, `fully-offline` or platform-support claims without evidence.
+Description, topics and private visibility were read back from GitHub after configuration. Topics describe implemented behavior, not search-ranking guarantees. Original dashboard code is [MIT-licensed](../LICENSE); dependency and voice-model licenses remain separate. Do not add realtime, fully-offline or platform-support claims without evidence.
 
 ## Website, links and badges
 
-- Leave the website field unset until the owner supplies an approved project URL. Branding is not authorization to invent a product landing page.
-- Link the [README](../README.md), [alpha notes](releases/0.1.0a1.md), [contribution guide](../CONTRIBUTING.md) and [security policy](../SECURITY.md) using repository-relative links until a real destination exists.
-- Do not draft clone commands with a guessed account or pretend a GitHub/PyPI release already exists.
-- Do not display successful CI or Windows/Linux support badges: remote CI/platform execution are unverified. Any future MIT badge must describe original dashboard code only, not dependency or model licensing.
+- Website remains unset: no separate project landing page has been approved.
+- Installation instructions use the real repository URL. Private access remains necessary until launch.
+- CI evidence belongs in the [verification record](release-verification.md). Passing package tests are not proof of complete end-user model/audio compatibility on every platform.
+- No PyPI release or successful CI badge is implied by repository creation.
 
-## Before applying this draft
+## Public-switch procedure
 
-Confirm owner and slug, approve publication, verify the MIT license notice and dependency/model attributions, audit source/history for secrets and private data, and establish a verified private vulnerability-reporting channel. If using GitHub private reporting, enable it on the actual published repository before advertising the control. Complete the [release checklist](release-checklist.md); then read back any published metadata and release assets. None of those external actions is performed by this draft.
+The owner selected GitHub private vulnerability reporting for launch. GitHub documents this as a public-repository feature. After explicit authorization to change visibility, enable reporting, read back the setting and verify the reporting control before announcing availability. If enablement fails, stop the announcement and resolve the reporting channel. See [security policy](../SECURITY.md) and [release checklist](release-checklist.md).

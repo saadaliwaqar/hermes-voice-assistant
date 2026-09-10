@@ -2,7 +2,7 @@
 
 **A local-first AI voice assistant and web dashboard for Hermes Agent, with multiple conversations, speech-to-text, text-to-speech and background AI tasks.**
 
-Local alpha `0.1.0a1`. Working software, not yet a production release or a published open-source repository. Community project; not an official Nous Research product. Original dashboard code is MIT-licensed; dependency and voice-model licenses are separate. Publication approval is still pending.
+Alpha candidate `0.1.0a1`, maintained at [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). The repository is private pending final publication approval; this is not a production release. Community project, not an official Nous Research product. Original dashboard code is MIT-licensed; dependency and voice-model licenses are separate.
 
 [Installation](docs/installation.md) · [Alpha release notes](docs/releases/0.1.0a1.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
@@ -41,7 +41,14 @@ Studio is the default. **Classic layout** restores the previous workspace immedi
 
 ## Quick start
 
-Requires Python 3.11 or newer. From this project’s source directory, use an environment where your supported Hermes installation already works, then install the dashboard there:
+Requires Python 3.11 or newer. Clone the repository (access is required while it remains private):
+
+```sh
+git clone https://github.com/saadaliwaqar/hermes-voice-assistant.git
+cd hermes-voice-assistant
+```
+
+From this source directory, use an environment where your supported Hermes installation already works, then install the dashboard there:
 
 ```sh
 python -m pip install -e ".[speech]"
@@ -74,7 +81,7 @@ This is a single local user's application, not authenticated multi-user hosting.
 
 See the [release verification record](docs/release-verification.md) and [third-party notices](THIRD_PARTY_NOTICES.md) for scope and unresolved gates.
 
-Latest recorded local regression results: **100 Python tests, 55 browser tests and 18 Node speech/geometry tests passed**. These are local development results, not remote CI badges or platform certification.
+Latest local regression results: **104 Python tests, 55 browser tests and 18 Node speech/geometry tests passed**. [GitHub CI for the Windows compatibility fix](https://github.com/saadaliwaqar/hermes-voice-assistant/actions/runs/34440221742) passed Python/package checks on macOS, Ubuntu and Windows with Python 3.11/3.12, plus frontend syntax and Node tests. Package CI is not complete platform certification.
 
 - Deterministic backend regression tests: persistence, session isolation, overlapping lanes, approvals, cancellation, static asset routing and exception privacy.
 - Live provider checks: independent session context, a real tool task in one session while chatting in another, reconnect without duplicate work, cancellation and export.
@@ -82,7 +89,7 @@ Latest recorded local regression results: **100 Python tests, 55 browser tests a
 - Prerecorded synthetic microphone -> local Whisper -> configured conversation model -> Edge TTS -> actual browser playback; microphone tracks release on session switch.
 - Python lint/format checks, source/wheel builds, and clean macOS Python 3.12 wheel installation for UI/storage with Hermes absent.
 
-Live Hermes inference was tested on macOS in a Hermes-enabled Python 3.11 environment against installed Hermes revision `21b2095d00`. A clean macOS Python 3.12 wheel check covered UI/storage with Hermes absent, **not a full independent Hermes installation**. Remote CI and Windows/Linux execution remain unverified. Synthetic audio tests do not establish real-room microphone quality.
+An independently populated macOS Python 3.11 environment with Hermes revision `21b2095d00` passed actual chat and prerecorded browser voice playback. It reused existing authentication through a QA-only memory bridge and an existing Whisper cache. **Normal first-user authentication/setup is still partial:** the wizard subprocess could not inherit that bridge. See the [exact verification boundary](docs/release-verification.md). A separate clean Python 3.12 wheel check passed missing-Hermes onboarding/save/restart. Full live model/audio compatibility on Windows/Linux and real-room microphone quality remain unverified.
 
 ## Known alpha limitations
 
@@ -115,7 +122,7 @@ Next: broader installation compatibility, stronger session/task recovery, artifa
 
 **Is this a realtime voice assistant?** It supports turn-based voice conversation, not full-duplex speech or wake-word listening. The early-speech trial is off by default and has no proven latency benefit on the tested runtime.
 
-**Does it work on Windows or Linux?** Those platforms have not been exercised yet. The recorded runtime and browser checks are on macOS; a platform-neutral CLI is not proof of cross-platform support.
+**Does it work on Windows or Linux?** Python tests and package builds pass on GitHub’s Windows and Ubuntu runners with Python 3.11/3.12. Full live Hermes/microphone/speaker checks are still macOS-only. Passing package CI is not a guarantee of end-to-end voice support on every platform.
 
 **Is this official Hermes software?** No. It is an independent community project by Devsdroid.com, not an official Nous Research product. Original dashboard code uses the [MIT License](LICENSE); dependencies and voice models retain their separate licenses. Publication is not yet authorized.
 

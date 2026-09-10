@@ -1,6 +1,13 @@
 # Installation and compatibility
 
-This is a local alpha, not a published package release. The source tree is the installation source.
+This is an alpha candidate, not a published PyPI package. The source tree is the installation source.
+
+```sh
+git clone https://github.com/saadaliwaqar/hermes-voice-assistant.git
+cd hermes-voice-assistant
+```
+
+Repository access is required while it remains private. The commands below assume this directory and an explicitly chosen Hermes-enabled Python environment.
 
 ## Prerequisite: a functioning Hermes runtime
 Use a Python environment in which `from run_agent import AIAgent` works, following the official [Hermes Python library guide](https://hermes-agent.nousresearch.com/docs/guides/python-library). Hermes does not currently provide a supported PyPI wheel for this purpose.
@@ -31,9 +38,10 @@ The Settings dialog chooses provider, default/worker model, optional conversatio
 The optional `Start Hermes Voice.command` uses an already prepared project `.venv`, opens the browser and stores local development data in `.local/app`. It does not install dependencies or run at login. Keep its Terminal open; Control+C stops it. The helper is macOS-specific, while the package CLI is platform-neutral.
 
 ## Verified scope
-- macOS: actual Hermes-enabled Python 3.11 integration and Chrome browser tests.
+- macOS: actual Hermes-enabled Python 3.11 integration and Chrome browser tests, repeated in an independently populated runtime/wheel environment. Existing authentication and Whisper cache were reused; the QA-only in-memory credential bridge did not propagate to the wizard subprocess. Normal first-user authentication/setup remains partial. See [verification scope](release-verification.md).
 - Clean macOS Python 3.12: wheel installation, static assets and session API smoke with Hermes absent.
 - Installed Hermes revision tested: `21b2095d00`.
-- Windows/Linux: CI matrix is configured, but remote CI and installation have not yet run. Do not interpret configuration as a support guarantee.
+- GitHub CI: Python tests and package builds passed on macOS, Ubuntu and Windows with Python 3.11/3.12 in [run 34440221742](https://github.com/saadaliwaqar/hermes-voice-assistant/actions/runs/34440221742). Windows browser-asset MIME mappings are explicitly controlled by the dashboard.
+- Full live model/microphone/speaker operation on Windows/Linux remains unverified; package CI is not an end-to-end support guarantee.
 
 Core AIAgent use is documented upstream; runtime-provider and approval-policy helpers are version-sensitive. New Hermes releases need compatibility checks.

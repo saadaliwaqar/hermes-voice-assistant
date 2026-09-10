@@ -10,7 +10,9 @@ The server prohibits embedding with CSP `frame-ancestors 'none'` and `X-Frame-Op
 
 ## Reporting a vulnerability
 
-**No private reporting address or published repository destination is currently advertised or verified.** Before publication, the maintainer must establish and verify a private reporting channel.
+Repository: [saadaliwaqar/hermes-voice-assistant](https://github.com/saadaliwaqar/hermes-voice-assistant). It remains private during release preparation. GitHub private vulnerability reporting is a public-repository feature, so its availability is not yet verified.
+
+The owner selected GitHub private vulnerability reporting for launch. During the separately approved public switch, the maintainer must enable it and read back the setting before announcing the alpha. No security email address is advertised. See [GitHub’s configuration guide](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configuring-private-vulnerability-reporting-for-a-repository).
 
 If the project is published on GitHub **and private vulnerability reporting is enabled**, use that repository's **Security → Report a vulnerability** control. Do not assume it is available until the actual repository and setting are confirmed. Otherwise, request a private contact through an existing maintainer communication channel without disclosing exploit details. If no channel exists, withhold sensitive details until one is announced; do not put them in a public issue.
 
