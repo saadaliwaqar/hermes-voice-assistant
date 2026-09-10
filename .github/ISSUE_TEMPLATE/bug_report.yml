@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a reproducible dashboard issue without private data.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Do not post credentials, conversation exports, recordings or unredacted logs. Suspected vulnerabilities belong in the private reporting process described in SECURITY.md, not a public issue."
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Dashboard version, Hermes revision, operating system, Python and browser. No usernames or home-directory paths.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps using non-sensitive test text.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Optional screenshots with names, paths, conversations and keys removed.

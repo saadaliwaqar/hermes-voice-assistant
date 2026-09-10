@@ -1,0 +1,171 @@
+.voice-orb-stage {
+  position: relative;
+  flex: 0 0 clamp(240px, 33vh, 340px);
+  min-height: 0;
+  margin: 0 30px;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+#voice-orb {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.orb-caption,
+.orb-footnote {
+  position: absolute;
+  left: 0;
+  font: 9px var(--mono);
+  letter-spacing: 1.6px;
+  color: var(--muted);
+  z-index: 1;
+}
+.orb-caption {
+  top: 16px;
+}
+.orb-footnote {
+  bottom: 14px;
+  font-size: 8px;
+  opacity: 0.7;
+}
+#orb-toggle {
+  position: absolute;
+  right: 0;
+  top: 7px;
+  z-index: 2;
+  min-height: 32px;
+  padding: 6px 8px;
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+  font-size: 11px;
+}
+.orb-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  gap: 14px;
+}
+.orb-state {
+  font: 8px var(--mono);
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+.orb-center strong {
+  font-size: clamp(29px, 3.7vw, 48px);
+  font-weight: 250;
+  letter-spacing: 7px;
+  color: var(--accent);
+  text-shadow: 0 0 24px color-mix(in srgb, var(--accent) 15%, transparent);
+  padding-left: 7px;
+}
+.orb-subtitle {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.25px;
+}
+.voice-orb-stage[data-phase="listening"] .orb-state,
+.voice-orb-stage[data-phase="speaking"] .orb-state {
+  color: var(--accent);
+}
+.voice-orb-stage[data-compact="true"] {
+  flex-basis: 46px;
+}
+.voice-orb-stage[data-compact="true"] canvas,
+.voice-orb-stage[data-compact="true"] .orb-center,
+.voice-orb-stage[data-compact="true"] .orb-footnote {
+  display: none;
+}
+.conversation .welcome {
+  margin: 16px auto;
+  max-width: 510px;
+}
+.conversation .welcome h2 {
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  margin: 8px 0;
+}
+.conversation .welcome .eyebrow {
+  display: none;
+}
+.conversation .welcome p {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.conversation .messages {
+  min-height: 105px;
+}
+.voice-symbol {
+  display: none;
+}
+.voice-strip {
+  flex-wrap: wrap;
+}
+.voice-copy {
+  min-width: 160px;
+}
+.voice-orb-stage:before,
+.voice-orb-stage:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  border-top: 1px solid var(--muted);
+  opacity: 0.35;
+}
+.voice-orb-stage:before {
+  left: 12px;
+  border-left: 1px solid var(--muted);
+}
+.voice-orb-stage:after {
+  right: 12px;
+  border-right: 1px solid var(--muted);
+}
+@media (min-width: 1000px) and (max-height: 820px) {
+  .voice-orb-stage {
+    flex-basis: 220px;
+  }
+  .conversation-head {
+    padding-top: 15px;
+    padding-bottom: 12px;
+  }
+  .voice-strip {
+    padding: 10px 0;
+  }
+  .composer textarea {
+    min-height: 55px;
+  }
+  .composer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+@media (max-width: 760px) {
+  .voice-orb-stage {
+    margin: 0 18px;
+    flex-basis: 250px;
+  }
+  .orb-caption {
+    font-size: 8px;
+    letter-spacing: 0.7px;
+  }
+  .orb-center strong {
+    font-size: 36px;
+  }
+  .conversation .messages {
+    min-height: 160px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orb-center strong {
+    text-shadow: none;
+  }
+}

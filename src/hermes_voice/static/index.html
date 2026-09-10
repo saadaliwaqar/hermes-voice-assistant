@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en" data-theme="core" data-layout="studio">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Hermes Voice Assistant by Devsdroid.com</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="stylesheet" href="/static/orb.css" />
+    <link rel="stylesheet" href="/static/studio.css" />
+    <script type="module" src="/static/studio.mjs"></script>
+    <script type="module" src="/static/app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip" href="#composer">Skip to composer</a>
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">H</div>
+      <div class="brand">
+        Hermes <span>Voice Assistant</span><small>BY DEVSDROID.COM</small>
+      </div>
+      <div id="connection" class="connection" role="status">
+        Connecting to local service…
+      </div>
+      <button
+        id="layout-toggle"
+        type="button"
+        aria-label="Switch to Classic layout"
+        title="Switch layout without leaving your conversation"
+      >
+        Classic layout
+      </button>
+      <button id="theme" aria-label="Switch to Daylight theme">Daylight</button
+      ><button id="setup-open">Setup</button
+      ><button id="settings-open">Settings</button>
+    </header>
+    <div id="notice" class="notice" role="alert" hidden>
+      <span id="notice-text"></span
+      ><button id="dismiss" aria-label="Dismiss notice">Dismiss</button>
+    </div>
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Sessions">
+        <div class="section-heading">
+          <h2>Workspace</h2>
+          <span class="eyebrow">SESSIONS</span>
+        </div>
+        <button id="new-session" class="primary wide">+ New conversation</button
+        ><label class="search"
+          ><span class="sr-only">Search session titles</span
+          ><input
+            id="search"
+            type="search"
+            placeholder="Search conversations" /></label
+        ><label class="check muted"
+          ><input id="show-archived" type="checkbox" /> Show archived</label
+        >
+        <nav id="sessions" aria-label="Conversations">
+          <p class="empty-small">Loading conversations…</p>
+        </nav>
+        <div class="sidebar-foot">
+          <span class="status-dot"></span> Local workspace
+          <p>
+            History stays with this service. Model and speech providers may
+            process requests remotely.
+          </p>
+        </div>
+      </aside>
+      <main class="conversation">
+        <div class="conversation-head">
+          <div>
+            <p class="eyebrow">FOREGROUND SESSION</p>
+            <h1 id="session-title">Your conversation space</h1>
+            <p id="session-state" class="muted">
+              Choose or create a conversation to begin.
+            </p>
+          </div>
+          <details id="session-menu">
+            <summary aria-label="Session actions">Actions</summary>
+            <div class="menu">
+              <button id="rename-session">Rename</button
+              ><button id="archive-session">Archive</button
+              ><a id="export-session" href="#">Export JSON</a
+              ><button id="delete-session" class="danger">Delete</button>
+            </div>
+          </details>
+        </div>
+        <section
+          id="voice-orb-stage"
+          class="voice-orb-stage"
+          data-phase="standby"
+          data-compact="false"
+          aria-label="Audio-reactive voice interface"
+        >
+          <span class="orb-caption">VOICE INTERFACE / HERMES CORE</span>
+          <button id="orb-toggle" type="button" aria-expanded="true">
+            Hide visual
+          </button>
+          <canvas id="voice-orb" aria-hidden="true"></canvas>
+          <div class="orb-center">
+            <span class="orb-state">SYSTEM STANDBY</span><strong>HERMES</strong
+            ><span class="orb-subtitle">Your voice. An independent mind.</span>
+          </div>
+          <span class="orb-footnote">SIGNAL-REACTIVE VISUALIZATION</span>
+        </section>
+        <div class="voice-strip">
+          <div class="voice-symbol" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="voice-copy">
+            <strong id="voice-state">Text-first. Voice when you need it.</strong
+            ><span id="voice-detail"
+              >Start the microphone explicitly. Nothing is listening yet.</span
+            >
+          </div>
+          <label class="check"
+            ><input id="hands-free" type="checkbox" checked /> Auto-send
+            speech</label
+          ><button id="microphone">Start mic</button
+          ><button
+            id="interrupt"
+            title="Stops local audio and foreground chat; workers keep running"
+          >
+            Interrupt
+          </button>
+        </div>
+        <section
+          id="messages"
+          class="messages"
+          aria-label="Conversation messages"
+          tabindex="0"
+        >
+          <div class="welcome">
+            <span class="eyebrow">A CLEAR SPACE TO THINK</span>
+            <h2>Talk it through.<br />Put work in motion.</h2>
+            <p>
+              Chat with Hermes, or explicitly send a request to a worker. Follow
+              its progress here without losing your conversation.
+            </p>
+          </div>
+        </section>
+        <button id="latest" class="latest" hidden>New messages ↓</button>
+        <form id="composer" class="composer">
+          <label for="message-input" class="sr-only">Message Hermes</label
+          ><textarea
+            id="message-input"
+            rows="3"
+            placeholder="What would you like to work on?"
+            maxlength="30000"
+          ></textarea>
+          <div class="composer-bottom">
+            <label class="check worker-toggle"
+              ><input id="worker-mode" type="checkbox" /> Send to worker</label
+            ><label class="check"
+              ><input id="auto-speech" type="checkbox" checked /> Speak new
+              replies</label
+            ><label class="check"
+              ><input id="stream-replies" type="checkbox" /> Stream replies (trial)</label
+            ><button id="send" class="primary" type="submit">
+              Send <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <p class="composer-hint">
+            Enter to send · Shift + Enter for a new line · Workers run on the
+            server, even when you switch sessions.
+          </p>
+        </form>
+      </main>
+      <aside class="activity" aria-label="Workers and approvals">
+        <div class="section-heading">
+          <h2>Activity</h2>
+          <span class="eyebrow">SESSION-OWNED</span>
+        </div>
+        <section>
+          <div class="panel-title">
+            <h3>Approvals inbox</h3>
+            <span id="approval-count" class="count">0</span>
+          </div>
+          <div id="approvals">
+            <p class="empty-small">No approvals waiting.</p>
+          </div>
+        </section>
+        <section class="workers-section">
+          <div class="panel-title">
+            <h3>Workers</h3>
+            <span id="task-count" class="count">0</span>
+          </div>
+          <div id="tasks">
+            <p class="empty-small">
+              No workers yet. Enable “Send to worker” for a tool-enabled task.
+            </p>
+          </div>
+        </section>
+        <div class="activity-note">
+          <strong>You stay in control.</strong>
+          <p>
+            Interrupt only stops foreground chat and audio. Cancel a worker on
+            its own card.
+          </p>
+        </div>
+      </aside>
+    </div>
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <form id="settings-form">
+        <div class="dialog-head">
+          <div>
+            <p class="eyebrow">WORKSPACE PREFERENCES</p>
+            <h2 id="settings-title">Settings</h2>
+          </div>
+          <button
+            type="button"
+            data-close="settings-dialog"
+            aria-label="Close settings"
+          >
+            Close
+          </button>
+        </div>
+        <p class="muted">
+          Uses your server-side provider configuration. The default model runs
+          workers and chat; the optional conversation override applies only to
+          tool-free chat. No credentials are entered or stored in this browser.
+        </p>
+        <div class="fields">
+          <label
+            >Provider<input
+              name="provider"
+              maxlength="100"
+              placeholder="Configured provider" /></label
+          ><label
+            >Worker / default model<input
+              name="model"
+              maxlength="200"
+              placeholder="Configured model" /></label
+          ><label
+            >Conversation model <span class="muted">(optional override)</span
+            ><input name="fast_model" maxlength="200" /></label
+          ><label
+            >Speech provider<select name="voice_provider">
+              <option value="none">None — text only</option>
+              <option value="edge">Edge</option>
+              <option value="elevenlabs">ElevenLabs</option>
+              <option value="openai">OpenAI</option>
+              <option value="piper">Piper — offline</option>
+            </select></label
+          ><label
+            >Search voices<input
+              id="voice-search"
+              type="search"
+              placeholder="Filter by name or ID"
+          /></label>
+          <label
+            >Available voices<select
+              id="voice-picker"
+              aria-describedby="voice-readiness"
+            >
+              <option value="">Provider default / manual ID</option>
+            </select></label
+          >
+          <label
+            >Voice name / manual ID<input
+              name="voice"
+              maxlength="200"
+              placeholder="Provider voice name or ID" /></label
+          ><label
+            >Language<input name="language" maxlength="30" placeholder="en"
+          /></label>
+        </div>
+        <p class="muted small">
+          Microphone audio is sent to this service’s transcription endpoint.
+          Speech playback uses the selected provider. Choosing None keeps
+          replies text-only.
+        </p>
+        <p id="voice-readiness" class="muted" role="status"></p>
+        <div class="voice-preview-actions">
+          <button id="voice-preview" type="button">Preview voice</button>
+          <button id="voice-preview-stop" type="button" disabled>
+            Stop preview
+          </button>
+        </div>
+        <p id="voice-preview-status" class="muted" role="status"></p>
+        <p class="muted small">
+          Preview uses a fixed sample, stops the microphone, and does not save
+          changes. Restart the mic explicitly when finished.
+        </p>
+        <div class="dialog-actions">
+          <span id="settings-status" role="status"></span
+          ><button type="submit" class="primary">Save settings</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="action-dialog" aria-labelledby="action-title">
+      <form id="action-form">
+        <h2 id="action-title">Session action</h2>
+        <p id="action-description" class="muted"></p>
+        <label id="action-label"
+          >Conversation title<input id="action-input" maxlength="160" required
+        /></label>
+        <div class="dialog-actions">
+          <button type="button" data-close="action-dialog">Cancel</button
+          ><button id="action-confirm" class="primary" type="submit">
+            Confirm
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <noscript
+      ><div class="notice">
+        JavaScript is required to connect to Hermes. Enable it to use text chat;
+        microphone access is optional.
+      </div></noscript
+    >
+  </body>
+</html>

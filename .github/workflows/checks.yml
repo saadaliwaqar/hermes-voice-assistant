@@ -1,0 +1,36 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e . pytest build
+      - run: python -m pytest tests/unit tests/integration
+      - run: python scripts/release_candidate.py
+      - run: python -m build
+  frontend-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:syntax
+      - run: npm run test:speech
+      - run: npm run test:orb
+# Live model, speech, and browser-provider tests are explicit local opt-ins.
+# No secrets are supplied to pull-request code. A configured matrix is not
+# evidence that platforms have passed until actual runs complete.

@@ -1,0 +1,17 @@
+include README.md LICENSE THIRD_PARTY_NOTICES.md CONTRIBUTING.md SECURITY.md
+include pyproject.toml package.json package-lock.json playwright.config.mjs
+include .gitignore .gitattributes
+include Start*.command
+recursive-include src *.py *.js *.mjs *.css *.html
+recursive-include tests *.py *.mjs
+recursive-include scripts *.py *.mjs
+recursive-include docs *.md *.png
+recursive-include .github *.yml *.yaml *.md
+prune docs/design
+prune .local
+prune .internal
+prune .venv
+prune node_modules
+prune test-results
+prune playwright-report
+global-exclude *.py[cod] .DS_Store

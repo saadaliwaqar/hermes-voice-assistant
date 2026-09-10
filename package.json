@@ -1,0 +1,15 @@
+{
+  "name": "hermes-voice-assistant-browser-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:browser": "playwright test",
+    "test:speech": "node --test tests/speech-playback.test.mjs tests/speech-stream.test.mjs",
+    "test:orb": "node --test tests/orb-geometry.test.mjs",
+    "test:syntax": "node --check src/hermes_voice/static/app.mjs && node --check src/hermes_voice/static/speech-playback.mjs && node --check src/hermes_voice/static/setup.mjs && node --check src/hermes_voice/static/orb.mjs && node --check src/hermes_voice/static/orb-geometry.mjs && node --check src/hermes_voice/static/studio.mjs && node --check src/hermes_voice/static/voice-core.mjs && node --check src/hermes_voice/static/capture-worklet.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "prettier": "3.9.6"
+  }
+}
